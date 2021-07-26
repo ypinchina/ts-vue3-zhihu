@@ -14,3 +14,13 @@
   4. 自定义函数 - Hooks
 }
 三. 更好的tyscript的接入
+
+Vue3基础学习课程session2:
+为什么要使用VUE3,为了解决什么问题
+1.vue2代码在复杂的组件内会变得难以维护，一个功能在一个vue文件里过于分散，
+vue2解决方式是mixin，但是mixin会带来变量、方法命名重复冲突等一系列问题。
+这时候需要使用到vue3的composition API出马了
+2.vue3对于typescript支持很好
+
+session3:
+只有vue/cli 在4.5.0版本以上才会有 vue3基础项目安装配置的可选项
