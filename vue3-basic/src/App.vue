@@ -8,17 +8,29 @@
 </template>
 
 <script lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, reactive, toRefs } from 'vue'
+interface PorpType {
+  count: number,
+  increase: () => void,
+  double: number
+}
 export default {
   setup() {
-    const count = ref(0)
-    const increase = () => {
-      count.value++
-    }
-    const double = computed(() => {
-      return count.value * 2
+    // 第一课，使用ref
+    // const count = ref(0)
+    // const increase = () => {
+    //   count.value++
+    // }
+    // const double = computed(() => {
+    //   return count.value * 2
+    // })
+    //第二课，使用reactive对象
+    const data:PorpType = reactive({
+      count: 0,
+      increase: () => data.count++ ,
+      double: computed(() => data.count * 2 )
     })
-    return { count, increase, double }
+    return { ...toRefs(data) }
   }
 }
 </script>
