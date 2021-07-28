@@ -1,3 +1,6 @@
+在线后端 API 查询和使用站点：http://api.vikingship.xyz/
+项目在线文档：http://docs.vikingship.xyz/
+
 本项目有三个部分组成
 1. typescript基础学习项目
 2. vue新特性学习项目
@@ -24,3 +27,9 @@ vue2解决方式是mixin，但是mixin会带来变量、方法命名重复冲突
 
 session3:
 只有vue/cli 在4.5.0版本以上才会有 vue3基础项目安装配置的可选项
+
+session7:
+vue2与vue3的双向数据绑定实现对比：
+1.vue2使用es5的Object.defindProporty(obj, "需要修改的属性", "值")进行set(),与get(),
+对于新增对象的值的监听和数组的某些方法无力，需要使用this.$set方法
+2.vue3使用es6的new Proxy(obj, {}),对象代理进行监听，解决了vue2双向数据绑定的缺陷
