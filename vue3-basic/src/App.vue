@@ -12,13 +12,17 @@
     <div v-if="loaded">
       <img :src="result.message">
     </div>
+    <div>
+      <Dialog />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { ref, computed, reactive, toRefs, watch, onMounted, onUnmounted } from 'vue'
+import { ref, computed, reactive, toRefs, watch } from 'vue'
 import mouseCatch  from './hooks/mouseCatch'
 import AxiosRequest from './hooks/useAxios'
+import Dialog from './components/dialog.vue'
 interface PorpType {
   count: number,
   increase: () => void,
@@ -29,6 +33,9 @@ interface resultInterFace {
   code: string
 }
 export default {
+  components: {
+    Dialog
+  },
   setup() {
     // 第一课，使用ref
     // const count = ref(0)
