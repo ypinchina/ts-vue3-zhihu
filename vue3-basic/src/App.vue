@@ -7,16 +7,26 @@
     <div>{{ greeting }}</div>
     <div @click="upGreeting">点击greeting</div>
     <div>x:{{x}}, y: {{y}}</div>
+
+    <div v-if="loading">loading...</div>
+    <div v-if="loaded">
+      <img :src="result.message">
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { ref, computed, reactive, toRefs, watch, onMounted, onUnmounted } from 'vue'
 import mouseCatch  from './hooks/mouseCatch'
+import AxiosRequest from './hooks/useAxios'
 interface PorpType {
   count: number,
   increase: () => void,
   double: number
+}
+interface resultInterFace {
+  message: string,
+  code: string
 }
 export default {
   setup() {
@@ -59,7 +69,13 @@ export default {
     // })
     //加强款
     const { x, y } = mouseCatch()
-    return { ...toRefs(data), upGreeting, greeting, x, y }
+    const { result, loading, loaded } = AxiosRequest<resultInterFace>('https://dog.ceo/api/breeds/image/random')
+    watch(result, ()=> {
+      if (result.value) {
+        console.log(result.value.message)
+      }
+    })
+    return { ...toRefs(data), upGreeting, greeting, x, y, result, loading, loaded }
   }
 }
 </script>
