@@ -12,7 +12,7 @@
 
 <script lang="ts">
 import { ref, computed, reactive, toRefs, watch, onMounted, onUnmounted } from 'vue'
-import { mouseCatch } from './hooks/mouseCatch'
+import mouseCatch  from './hooks/mouseCatch'
 interface PorpType {
   count: number,
   increase: () => void,
