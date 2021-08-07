@@ -12,8 +12,9 @@
     <div v-if="loaded">
       <img :src="result.message">
     </div>
+    <div @click="openModel">点击打开dialog</div>
     <div>
-      <Dialog />
+      <Dialog :isOpen="isOpen" @changeIsOpenState="changeIsOpenState">my dialog!!</Dialog>
     </div>
   </div>
 </template>
@@ -60,6 +61,13 @@ export default {
     watch(greeting,(val) => {
       document.title += val
     })
+    let isOpen = ref(false)
+    const changeIsOpenState = () => {
+      isOpen.value = false
+    }
+    const openModel = () => {
+      isOpen.value = true
+    }
     // 第五课 composition API 模块化封装调用
     // 基础款
     // const x = ref(0)
@@ -82,7 +90,7 @@ export default {
         console.log(result.value.message)
       }
     })
-    return { ...toRefs(data), upGreeting, greeting, x, y, result, loading, loaded }
+    return { ...toRefs(data), upGreeting, greeting, x, y, result, loading, loaded, isOpen, changeIsOpenState, openModel }
   }
 }
 </script>

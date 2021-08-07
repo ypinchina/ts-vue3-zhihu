@@ -1,29 +1,33 @@
 <!-- 组件说明 -->
 <template>
   <teleport to="#dialogDiv">
-    <div class="dialog">
+    <div class="dialog" v-if="isOpen">
       <div>dialog title</div>
-      <div>dialog content ...</div>
+      <div><slot> content ... </slot></div>
+      <div @click="buttonClick">关闭dialog</div>
     </div>
   </teleport>
 </template>
 
 <script lang="ts">
-export default {
-  components: {
-
-  },
-  data () {
-    return {
-
+import { defineComponent } from 'vue'
+export default defineComponent({
+  props: {
+    isOpen: {
+      default: false,
+      type: Boolean
     }
   },
-  computed: {
-
+  emits: {
+    'changeIsOpenState': null
   },
-  methods: {
+  setup(props, context) {
+    const buttonClick = () => {
+      context.emit('changeIsOpenState')
+    }
+    return { buttonClick }
   }
-}
+})
 </script>
 
 <style scoped>
