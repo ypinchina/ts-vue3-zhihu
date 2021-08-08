@@ -3,6 +3,14 @@
     <img alt="Vue logo" src="./assets/logo.png">
     <div>{{ count }}</div>
     <div>{{ double }}</div>
+    <Suspense>
+      <template #default>
+        <async-show />
+      </template>
+      <template #fallback>
+        <h1>loading...</h1>
+      </template>
+    </Suspense>
     <div @click="increase">点击 + 1</div>
     <div>{{ greeting }}</div>
     <div @click="upGreeting">点击greeting</div>
@@ -21,6 +29,7 @@
 
 <script lang="ts">
 import { ref, computed, reactive, toRefs, watch } from 'vue'
+import asyncShow from './components/asyncShow.vue'
 import mouseCatch  from './hooks/mouseCatch'
 import AxiosRequest from './hooks/useAxios'
 import Dialog from './components/dialog.vue'
@@ -35,7 +44,7 @@ interface resultInterFace {
 }
 export default {
   components: {
-    Dialog
+    Dialog, asyncShow
   },
   setup() {
     // 第一课，使用ref
